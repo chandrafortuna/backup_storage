@@ -24,19 +24,19 @@ development:
 test:
   adapter: mysql2
   encoding: utf8
-  reconnect: false
-  database: backup-storage_test
+  reconnect: <%= ENV["DB_RECONNECT"] %>
+  database: <%= ENV["DB_DATABASE"] %>
   pool: 5
-  username: root
-  password: root-is-not-used
-  host: localhost
+  username: <%= ENV["DB_USERNAME"] %>
+  password: <%= ENV["DB_PASS"] %>
+  host: <%= ENV["DB_HOST"] %>
 
 production:
   adapter: mysql2
   encoding: utf8
-  reconnect: false
-  database: backup-storage_production
+  reconnect: <%= ENV["DB_RECONNECT"] %>
+  database: <%= ENV["DB_DATABASE"] %>
   pool: 5
-  username: root
-  password: root-is-not-used
-  host: localhost
+  username: <%= ENV["DB_USERNAME"] %>
+  password: <%= ENV["DB_PASS"] %>
+  host: <%= ENV["DB_HOST"] %>
