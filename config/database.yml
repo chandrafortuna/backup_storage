@@ -15,7 +15,7 @@ development:
   database: backup-storage_development
   pool: 5
   username: root
-  password: 
+  password: root-is-not-used
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
@@ -28,7 +28,7 @@ test:
   database: backup-storage_test
   pool: 5
   username: root
-  password: 
+  password: root-is-not-used
   host: localhost
 
 production:
@@ -38,5 +38,5 @@ production:
   database: backup-storage_production
   pool: 5
   username: root
-  password: 
+  password: root-is-not-used
   host: localhost
