@@ -31,6 +31,10 @@ Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.
 Getting Started
 ---------------
 
+Prerequisite:
+- MySQL
+- Backup gem v4.4.0 (installation: http://backup.github.io/backup/v4/installation/)
+
 Documentation and Support
 -------------------------
 

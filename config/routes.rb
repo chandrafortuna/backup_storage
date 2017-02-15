@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'visitors/index'
+
   get 'profiles/index'
 
   get 'profiles/create'
