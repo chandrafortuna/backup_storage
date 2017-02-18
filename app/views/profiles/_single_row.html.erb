@@ -1,0 +1,17 @@
+<tr id="tr_profile_<%= profile.id %>">
+  <td><%= profile.name %></td>
+  <td><%= profile.created_at.to_formatted_s(:long) %></td>
+  <td><%= profile.updated_at.to_formatted_s(:long) %></td>
+  <td>
+    <%= link_to profile_backup_path(profile), method: :post, class: "btn btn-sm btn-success" do %>
+        <i class="glyphicon glyphicon-tasks"></i> Backup
+    <% end %>
+    <button data-profile-id="<%= profile.id %>" type="button" class="btn-edit-profile btn btn-sm btn-primary" aria-label="Edit">
+      <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i> Edit
+    </button>
+    <%= link_to profile, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" do %>
+        <i class="glyphicon glyphicon-trash"></i> Delete
+    <% end %>
+
+  </td>
+</tr>

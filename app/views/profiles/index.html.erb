@@ -8,22 +8,25 @@
     </div>
     <div class="col-lg-12">
       <div class="table-responsive">
-        <table class="table">
+        <table class="table" id="profileTable">
           <caption class="text-right">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#profileModal">
               <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>New Profile
             </button>
           </caption>
-          <th>
-            <td>Profile</td>
-            <td>Frequency</td>
-            <td>Files</td>
-            <td>Storage</td>
-            <td>Last backup</td>
-            <td>Next Backup</td>
-            <td>Action</td>
-          </th>
-          <tr></tr>
+          <thead>
+          <tr>
+            <th>Profile</th>
+            <th>Created</th>
+            <th>Updated</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @profiles.each do |p| %>
+              <%= render partial: 'single_row', locals: {profile: p} %>
+          <% end %>
+          </tbody>
         </table>
       </div>
     </div>
@@ -32,7 +35,7 @@
 </div>
 
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="profileModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -42,28 +45,10 @@
         <h4 class="modal-title">New Profile</h4>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="profileName">Profile Name</label>
-            <input type="text" class="form-control" id="profileName" placeholder="Profile Name">
-          </div>
-          <div class="form-group">
-            <label for="paths">Directories</label>
-            <textarea class="form-control" id="paths" rows="4" placeholder="Directories"></textarea>
-            <small><i>Type directory or file-path to be backed up, separate by coma ( ,)</i></small>
-          </div>
-          <div class="form-group">
-            <label for="excludes">Exclusions</label>
-            <textarea class="form-control" id="excludes" rows="4" placeholder="Exclusions"></textarea>
-            <small><i>Type directory or file-path exclusions, separate by coma ( ,)<br>
-            Matching files or directories will not be backed up
-            </i></small>
-          </div>
-        </form>
+        <%= render 'form', modal: true %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
       </div>
     </div>
 

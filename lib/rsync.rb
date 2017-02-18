@@ -10,11 +10,12 @@ class Rsync
   end
 
   def backup(user_id, profile, paths, excludes)
-    path = ini_directory(user_id, profile)
+    path = init_directory(user_id, profile)
     file_exclude = excludes.any? ? create_exclude_list(excludes) : nil
     result = []
     paths.each do |p|
-      result.push rbackup(p, path, file_exclude)
+      puts "#{Dir.home}#{p}\n"
+      result.push rbackup("#{Dir.home}#{p.strip}", path, file_exclude)
     end
     delete(file_exclude) unless file_exclude.nil?
     result
@@ -26,7 +27,7 @@ class Rsync
 
   def create_exclude_list(excludes)
     filename = "#{@tmp_dir}/#{DateTime.now.strftime('%Y%m%d%H%M%S')}.txt"
-    excludes.each { |ex| add_to_file(ex, filename) }
+    excludes.each { |ex| add_to_file(ex.strip, filename) }
     filename
   end
 
@@ -41,7 +42,7 @@ class Rsync
   # ================= ALL the command lines wrapper functions =================
   private
 
-  def ini_directory(user_id, profile)
+  def init_directory(user_id, profile)
     log = DateTime.now.strftime('%Y-%m-%d-%H-%M-%S')
     user_directory = "#{@destination_dir}/#{user_id}"
     profile_directory = "#{@destination_dir}/#{user_id}/#{profile}"

@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
   get 'visitors/index'
 
-  get 'profiles/index'
-
-  get 'profiles/create'
-
-  get 'profiles/backup'
-
   root to: 'profiles#index'
   devise_for :users
   resources :users
+  resources :profiles do
+    resources :profile_logs
+    post :backup
+    get :detail
+  end
 end

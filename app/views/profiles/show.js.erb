@@ -1,0 +1,25 @@
+<% if @updated %>
+$("#tr_profile_<%= @profile.id%>").replaceWith("<%= j render partial: 'single_row', locals: {profile: @profile } %>");
+<% else %>
+$('#profileTable').append("<%= j render partial: 'single_row', locals: {profile: @profile } %>");
+<% end %>
+$('#profileModal').modal_success();
+$(".btn-edit-profile").click(function(){
+  var id = $(this).data('profile-id');
+  $("#new_profile").attr("action", "/profiles/" + id);
+  $("#new_profile").attr("method", "PUT");
+  $.ajax({
+    type: "GET",
+    url: "/profiles/" + id + "/detail",
+    success:function(data){
+      // alert (JSON.stringify(data))
+      $('#profileModal').modal('show');
+      $("#profile_name").val(data.name);
+      $("#profile_paths").val(data.paths);
+      $("#profile_excludes").val(data.excludes);
+    },
+    error:function(data) {
+      alert ("Error: Can't retrieve data!")
+    }
+  });
+});

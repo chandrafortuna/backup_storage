@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Profile Logs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Path</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @profile_logs.each do |profile_log| %>
+      <tr>
+        <td><%= profile_log.title %></td>
+        <td><%= profile_log.path %></td>
+        <td><%= link_to 'Show', profile_log %></td>
+        <td><%= link_to 'Edit', edit_profile_log_path(profile_log) %></td>
+        <td><%= link_to 'Destroy', profile_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Profile Log', new_profile_log_path %>
