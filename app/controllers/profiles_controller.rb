@@ -1,9 +1,9 @@
 class ProfilesController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_profile, only: [:show, :update, :destroy]
   def index
     @profile = Profile.new
-    @profiles = Profile.all
+    @profiles = Profile.resolve_by_created(current_user.id)
   end
 
   def show
@@ -11,7 +11,9 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @profile = Profile.new(profile_params)
+    @profile = Profile.new(profile_params) do |e|
+      e.user_id = current_user.id
+    end
     respond_to do |format|
       if @profile.save
         format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
@@ -57,7 +59,12 @@ class ProfilesController < ApplicationController
     rsync = Rsync.new
     excludes = text_to_array(@profile.excludes)
     paths = text_to_array(@profile.paths)
-    rsync.backup(current_user.id, @profile.name.parameterize, paths, excludes)
+    profile_slug = @profile.name.parameterize
+    log = DateTime.now.strftime('%Y-%m-%d-%H-%M-%S')
+    rsync.backup(current_user.id, profile_slug, log, paths, excludes)
+    @profile.profile_logs.build({:title => log, :path => "#{current_user.id}/#{profile_slug}/#{log}"})
+    @profile.save
+    redirect_to profile_profile_logs_path(@profile.id)
   end
 
   def detail

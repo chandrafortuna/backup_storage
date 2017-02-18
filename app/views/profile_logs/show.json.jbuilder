@@ -1,1 +1,0 @@
-json.partial! "profile_logs/profile_log", profile_log: @profile_log

@@ -9,8 +9,8 @@ class Rsync
     @destination_dir  = "#{Dir.home}/backup_me/destination"
   end
 
-  def backup(user_id, profile, paths, excludes)
-    path = init_directory(user_id, profile)
+  def backup(user_id, profile, log, paths, excludes)
+    path = init_directory(user_id, profile, log)
     file_exclude = excludes.any? ? create_exclude_list(excludes) : nil
     result = []
     paths.each do |p|
@@ -22,12 +22,14 @@ class Rsync
   end
 
   def find_directory(parent_dir)
-    find(parent_dir)
+    find(parent_dir).split("\n").each do |d|
+      d.slice! "#{@destination_dir}/#{parent_dir}"
+    end
   end
 
   def create_exclude_list(excludes)
     filename = "#{@tmp_dir}/#{DateTime.now.strftime('%Y%m%d%H%M%S')}.txt"
-    excludes.each { |ex| add_to_file(ex.strip, filename) }
+    excludes.each { |ex| add_to_file(ex.strip.sub(/^\//, ''), filename) }
     filename
   end
 
@@ -42,8 +44,7 @@ class Rsync
   # ================= ALL the command lines wrapper functions =================
   private
 
-  def init_directory(user_id, profile)
-    log = DateTime.now.strftime('%Y-%m-%d-%H-%M-%S')
+  def init_directory(user_id, profile, log)
     user_directory = "#{@destination_dir}/#{user_id}"
     profile_directory = "#{@destination_dir}/#{user_id}/#{profile}"
     profile_log_directory = "#{@destination_dir}/#{user_id}/#{profile}/#{log}"

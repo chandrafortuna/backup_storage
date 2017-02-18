@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   resources :profiles do
-    resources :profile_logs
+    resources :profile_logs do
+      get :detail
+    end
     post :backup
     get :detail
   end

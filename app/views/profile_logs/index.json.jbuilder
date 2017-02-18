@@ -1,1 +1,0 @@
-json.array! @profile_logs, partial: 'profile_logs/profile_log', as: :profile_log

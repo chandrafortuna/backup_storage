@@ -16,18 +16,18 @@
     <div class="form-group">
       <%= f.hidden_field :id, :value => @profile.id %>
       <%= f.label :name, class: 'control-label' %><br>
-      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.text_field :name, class: 'form-control', :placeholder => 'Profile name'%>
       <span class="help-block"></span>
     </div>
     <div class="form-group">
       <%= f.label :paths, class: 'control-label' %><br>
-      <%= f.text_area :paths, class: 'form-control', :rows => 5 %>
+      <%= f.text_area :paths, class: 'form-control', :rows => 5, :placeholder => "/Desktop\n/source \n/backup/dir1 \ntemplate.txt" %>
       <small><i>Type directory or file-path to be backed up, separated by new line</i></small>
       <span class="help-block"></span>
     </div>
     <div class="form-group">
       <%= f.label :excludes, class: 'control-label' %><br>
-      <%= f.text_area :excludes, class: 'form-control', :rows => 5 %>
+      <%= f.text_area :excludes, class: 'form-control', :rows => 5, :placeholder => "source\nbackup/dir1/comment\n*.rb\n.gitignore"  %>
       <small><i>Type directory or file-path exclusions, separated by new line<br>
         Matching files or directories will not be backed up
       </i></small>
