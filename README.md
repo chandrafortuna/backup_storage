@@ -5,7 +5,7 @@ User only can backup Directories in a Local Server. specified location in
 in `/backup_me/destination`
 
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+[![Deployed in Heroku]](https://backupme.herokuapp.com)
 
 This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
 provided by the [RailsApps Project](http://railsapps.github.io/).
