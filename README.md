@@ -4,17 +4,11 @@ Backup me is application to backup user's local data. There are limitation on th
 User only can backup Directories in a Local Server. specified location in
 in `/backup_me/destination`
 
-
-[![Deployed in Heroku]](https://backupme.herokuapp.com)
-
 This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
 provided by the [RailsApps Project](http://railsapps.github.io/).
 
-Rails Composer is supported by developers who purchase our RailsApps tutorials.
-
 Ruby on Rails
 -------------
-
 System Requirements:
 
 - Ruby 2.3.0
