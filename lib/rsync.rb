@@ -37,8 +37,13 @@ class Rsync
 
   end
 
-  def delete(path)
-    rm(path)
+  def delete_profile(user_id, profile)
+    profile_directory = "#{@destination_dir}/#{user_id}/#{profile}"
+    delete(profile_directory)
+  end
+
+  def delete(parent_dir)
+    rm(parent_dir)
   end
 
   # ================= ALL the command lines wrapper functions =================

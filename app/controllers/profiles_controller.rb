@@ -47,6 +47,8 @@ class ProfilesController < ApplicationController
   end
 
   def destroy
+    rsync = Rsync.new
+    rsync.delete_profile(current_user.id, @profile.name.parameterize)
     @profile.destroy
     respond_to do |format|
       format.html { redirect_to profiles_url, notice: 'Profile was successfully destroyed.' }

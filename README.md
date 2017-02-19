@@ -1,5 +1,9 @@
 Backup Storage
 ================
+Backup me is application to backup user's local data. There are limitation on this app
+User only can backup Directories in a Local Server. specified location in
+in `/backup_me/destination`
+
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
@@ -8,47 +12,41 @@ provided by the [RailsApps Project](http://railsapps.github.io/).
 
 Rails Composer is supported by developers who purchase our RailsApps tutorials.
 
-Problems? Issues?
------------
-
-Need help? Ask on Stack Overflow with the tag 'railsapps.'
-
-Your application contains diagnostics in the README file. Please provide a copy of the README file when reporting any issues.
-
-If the application doesn't work as expected, please [report an issue](https://github.com/RailsApps/rails_apps_composer/issues)
-and include the diagnostics.
-
 Ruby on Rails
 -------------
 
-This application requires:
+System Requirements:
 
 - Ruby 2.3.0
 - Rails 5.0.0.1
+- MySQL
+- Rsync `brew install rsync`
 
 Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
 
 Getting Started
 ---------------
 
-Prerequisite:
-- MySQL
-- Backup gem v4.4.0 (installation: http://backup.github.io/backup/v4/installation/)
+1. Clone the repository from GitHub:
 
-Documentation and Support
--------------------------
+        git clone https://github.com/chandrafortuna/backup_storage.git
 
-Issues
--------------
+2. Install Ruby dependencies:
 
-Similar Projects
-----------------
+        cd backup-storage
+        bundle install
 
-Contributing
-------------
+3. Setup your database.yml, and run database migration:
 
-Credits
--------
+        rake db:migrate
 
-License
--------
+4. Start rails by running:
+
+        bundle exec rails s
+
+5. Open your favorite browser and open the web application at:
+
+        http://localhost:3000/
+
+6. Sign Up and login to create profile :D
+
